@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo3.mapper.UserMapper">
+
+    <resultMap id="UserResultMap" type="com.example.demo3.bean.User">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="VARCHAR" />
+        <result column="idCard" property="idCard" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <insert id="save"  parameterType="com.example.demo3.bean.User">
+        insert into DEMO.T_USER
+          (
+            id,
+            userName,
+            email,
+            address,
+            sex,
+            idCard
+          )
+        values
+          (
+            #{id},
+            #{userName},
+            #{email},
+            #{address},
+            #{sex},
+            #{idCard}
+          )
+    </insert>
+
+    <select id="getUsers" resultMap="UserResultMap">
+        SELECT * from  DEMO.T_USER
+    </select>
+
+
+    <delete id="deleteById">
+        delete  from
+           DEMO.T_USER
+        where
+           ID=#{id}
+    </delete>
+
+    <update id="updateUserById">
+        update
+            DEMO.T_USER
+        set
+           userName=#{userName},
+           email=#{userName},
+           address=#{address},
+           sex=#{sex},
+           idCard=#{idCard}
+        where
+           id=#{id}
+    </update>
+
+
+</mapper>

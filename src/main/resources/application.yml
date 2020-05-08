@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: demo
+  main:
+    allow-bean-definition-overriding: true
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+msp:
+  registry:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    host: 172.16.192.207
+    port: 9090
+    tags:
+      - msp-component=demo
+      - version=${info.app.version:Unknown}
+    type: eureka
+   # scheme: https
+server:
+  port: 8890
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+logback:
+  root:
+    level: error

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link type="test/css" href="css/style.css" rel="stylesheet">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#cors").click(
+            function () {
+
+            }
+        );
+    });
+
+    function cros(){
+        $.ajax({
+            url: "http://172.16.192.207:9070/api/test/properties",
+            dataType: "json",
+            type: "get",
+            success: function (response) {
+               console.log(response);
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+
+    function cros1(){
+        $.ajax({
+            url: "test/ceshi/2",
+            dataType: "json",
+            type: "get",
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    }
+
+    function crosEureks(){
+        $.ajax({
+            url: "http://172.16.192.207:9070/msp-registry/eureka/apps",
+            dataType: "json",
+            type: "get",
+            contentType: "application/json;charset=utf-8",//这个参数也是header参数
+            headers:{
+                'userId':'13456'
+            },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (response) {
+                console.log("error");
+               // window.location = '/api/v1/login?redirectUrl=' + encodeURIComponent(window.location);
+            }
+        });
+    }
+
+</script>
+<body>
+<input type="button" id="corSSs" onclick="cros()" value="core跨域测试" />
+
+<input type="button" id="corSSss" onclick="cros1()" value="本地测试" />
+
+<input type="button" id="corSSsss" onclick="crosEureks()" value="本地测试crosEureks" />
+</body>
